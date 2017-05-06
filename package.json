@@ -4,8 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "budo index.js:bundle.js --live --debug -- -t browserify-shim"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "budo": "^10.0.3",
+    "global": "^4.3.2",
+    "browserify-shim": "^3.8.14"
+  },
+  "dependencies": {
+    "impress.js": "^0.6.0"
+  },
+  "browserify-shim":{
+    "impress.js":"impress.js"
+  },
+  "browserify":{
+    "transform": ["browserify-shim"]
+  }
 }
