@@ -8,9 +8,11 @@ const z = (global) => {
     }).forEach((x) => {
         console.log(x)
     })
-    console.log(global.impress)
+    console.log(typeof global.impress)
 }
 
-//z(global)
+z(global)
 //z(window)
 //impress().init()
+console.log(global.impress, typeof global.impress)
+global.impress().init()
