@@ -4,22 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "budo index.js:bundle.js --live --debug -- -t browserify-shim"
+    "dev": "budo index.js:bundle.js --live --debug -- -t browserify-shim -t scssify -t [ babelify --presets [ 'react' ] ] "
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify-shim": "^3.8.14",
     "budo": "^10.0.3",
+    "bulma": "^0.4.1",
     "global": "^4.3.2",
-    "browserify-shim": "^3.8.14"
+    "scssify": "^2.3.0"
   },
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
     "impress.js": "^0.6.0"
   },
-  "browserify-shim":{
-    "impress.js":"impress.js"
-  },
-  "browserify":{
-    "transform": ["browserify-shim"]
+  "browserify-shim": {
+    "impress.js": "impress.js"
   }
 }
