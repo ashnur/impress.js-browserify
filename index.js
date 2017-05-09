@@ -3,49 +3,43 @@ const doc = require('global/document')
 const bulma = require('./main.sass')
 require('impress.js')
 const impress = global.impress()
+const React = require('react')
+const ReactDOM = require('react-dom')
 
 const c = () => [global.innerWidth / 2, global.innerHeight / 2]
 
-
-const make_step = ({title, slide, content, x, y}, i, steps) => {
-    const [l,t] = c()
-    const s = doc.createElement('div')
-    s.className = `step ${slide}`
-    s.dataset.x = (-l + (i*x)).toString(10)
-    s.dataset.y = y
-    const q = doc.createElement('q')
-    const h1 = doc.createElement('h1')
-    h1.className = 'title'
-    h1.textContent = title
-    s.appendChild(h1)
-    const contentText = doc.createTextNode(content)
-    q.appendChild(contentText)
-    s.appendChild(q)
-    return s 
+function Step(props, i, steps){
+    alert(i)
+    const sc = steps.length 
+    const m = Math.floor(sc/2)
+    const p = m - sc + i
+    return <div key={"step_"+i} className={'step'} data-x={props.x * p } data-y={props.y}>
+            <h1 className="title has-text-centered">{props.title}</h1>
+            {props.cont}
+           </div>
 }
 
-const impressContainer = doc.querySelector('#impress')
 const steps = [
     {
         title: 'Intro',
         slide: 'intro',
-        content: 'hello world',
+        content: <h2 className="title is-2">"wtf"</h2>,
         x: global.innerWidth,
-        y: global.innerHeight
+        y: global.innerHeight,
+        d: 0
     },
     {
+        title: 'outrO',
         slide: 'intro',
-        content: 'hello world2',
+        content: <b>z</b>,
         x: global.innerWidth,
-        y: global.innerHeight
+        y: global.innerHeight,
+        d: 0
+
     }
 ]
 
-steps.map(make_step).forEach((s, i) => {
-    impressContainer.appendChild(s)
-    alert(i)
-})
-
+ReactDOM.render(<div className="tile is-12 is-relative">{steps.map(Step)}</div>, doc.querySelector('#impress'))
 
 function alert(i){
     if (i === steps.length - 1) setTimeout(() => {
